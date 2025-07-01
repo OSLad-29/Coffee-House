@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Menu | The Coffee House</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+<header class="navbar">
+  <div class="nav-logo">
+    <h1 class="logo-text">The Coffee House</h1>
+  </div>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="/index.html" class="nav-link">Home</a></li>
+      <li><a href="/menu.html" class="nav-link">Menu</a></li>
+      <li><a href="/reservation.html" class="nav-link">Reserve</a></li>
+      <li><a href="/admin/dashboard.html" class="nav-link">Admin</a></li>
+    </ul>
+    <button class="nav-toggle">
+      <span class="hamburger"></span>
+    </button>
+  </nav>
+</header>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  navToggle?.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+</script>
+
+    
+    <main>
+        <div class="menu-categories">
+            <button class="active" data-category="coffee">Coffee</button>
+            <button data-category="tea">Tea</button>
+            <button data-category="baked">Baked Goods</button>
+        </div>
+
+        <!-- Coffee Section -->
+        <section id="coffee" class="menu-section">
+            <h2 class="section-title">Coffee</h2>
+            <div class="menu-items">
+                <article class="menu-item">
+                    <img src="images/Cappuccino.jpg" alt="Cappuccino">
+                    <h3>Cappuccino</h3>
+                    <p>Rich espresso with steamed milk & foam.</p>
+                    <div class="price">R35.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="cappuccino">-</button>
+                        <span class="quantity" data-id="cappuccino">0</span>
+                        <button class="quantity-btn plus" data-id="cappuccino">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Americano.jpg" alt="Americano">
+                    <h3>Americano</h3>
+                    <p>Smooth black coffee with a bold taste.</p>
+                    <div class="price">R28.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="americano">-</button>
+                        <span class="quantity" data-id="americano">0</span>
+                        <button class="quantity-btn plus" data-id="americano">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Latte.jpg" alt="Latte">
+                    <h3>Latte</h3>
+                    <p>Espresso with steamed creamy milk.</p>
+                    <div class="price">R34.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="latte">-</button>
+                        <span class="quantity" data-id="latte">0</span>
+                        <button class="quantity-btn plus" data-id="latte">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Espresso.jpg" alt="Espresso">
+                    <h3>Espresso</h3>
+                    <p>Strong concentrated coffee.</p>
+                    <div class="price">R25.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="espresso">-</button>
+                        <span class="quantity" data-id="espresso">0</span>
+                        <button class="quantity-btn plus" data-id="espresso">+</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Tea Section -->
+        <section id="tea" class="menu-section hidden">
+            <h2 class="section-title">Tea</h2>
+            <div class="menu-items">
+                <article class="menu-item">
+                    <img src="images/Green Tea.jpg" alt="Green Tea">
+                    <h3>Green Tea</h3>
+                    <p>Fresh and calming with a clean finish.</p>
+                    <div class="price">R25.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="green-tea">-</button>
+                        <span class="quantity" data-id="green-tea">0</span>
+                        <button class="quantity-btn plus" data-id="green-tea">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Rooibos.jpg" alt="Rooibos Tea">
+                    <h3>Rooibos Tea</h3>
+                    <p>Locally loved herbal South African tea.</p>
+                    <div class="price">R20.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="rooibos-tea">-</button>
+                        <span class="quantity" data-id="rooibos-tea">0</span>
+                        <button class="quantity-btn plus" data-id="rooibos-tea">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Earl Grey.jpg" alt="Earl Grey Tea">
+                    <h3>Earl Grey</h3>
+                    <p>Black tea with bergamot orange flavor.</p>
+                    <div class="price">R22.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="earl-grey">-</button>
+                        <span class="quantity" data-id="earl-grey">0</span>
+                        <button class="quantity-btn plus" data-id="earl-grey">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Chamomile.jpg" alt="Chamomile Tea">
+                    <h3>Chamomile</h3>
+                    <p>Soothing herbal tea with floral notes.</p>
+                    <div class="price">R23.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="chamomile">-</button>
+                        <span class="quantity" data-id="chamomile">0</span>
+                        <button class="quantity-btn plus" data-id="chamomile">+</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Baked Goods Section -->
+        <section id="baked" class="menu-section hidden">
+            <h2 class="section-title">Baked Goods</h2>
+            <div class="menu-items">
+                <article class="menu-item">
+                    <img src="images/Butter Croissant.jpg" alt="Butter Croissant">
+                    <h3>Butter Croissant</h3>
+                    <p>Freshly baked, flaky and buttery delight.</p>
+                    <div class="price">R22.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="butter-croissant">-</button>
+                        <span class="quantity" data-id="butter-croissant">0</span>
+                        <button class="quantity-btn plus" data-id="butter-croissant">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/blueberry.jpg" alt="Blueberry Muffin">
+                    <h3>Blueberry Muffin</h3>
+                    <p>Soft muffin packed with juicy blueberries.</p>
+                    <div class="price">R18.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="blueberry-muffin">-</button>
+                        <span class="quantity" data-id="blueberry-muffin">0</span>
+                        <button class="quantity-btn plus" data-id="blueberry-muffin">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Glazed Donut.jpg" alt="Glazed Donut">
+                    <h3>Glazed Donut</h3>
+                    <p>Classic donut with sweet sugar glaze.</p>
+                    <div class="price">R15.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="glazed-donut">-</button>
+                        <span class="quantity" data-id="glazed-donut">0</span>
+                        <button class="quantity-btn plus" data-id="glazed-donut">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Chocolate Cake.jpg" alt="Chocolate Cake">
+                    <h3>Chocolate Cake</h3>
+                    <p>Moist slice with rich chocolate ganache.</p>
+                    <div class="price">R30.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="chocolate-cake">-</button>
+                        <span class="quantity" data-id="chocolate-cake">0</span>
+                        <button class="quantity-btn plus" data-id="chocolate-cake">+</button>
+                    </div>
+                </article>
+
+                <article class="menu-item">
+                    <img src="images/Red Velvet Cake.jpg" alt="Red Velvet Cake">
+                    <h3>Red Velvet Cake</h3>
+                    <p>Fluffy red layers with cream cheese frosting.</p>
+                    <div class="price">R32.00</div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn minus" data-id="red-velvet-cake">-</button>
+                        <span class="quantity" data-id="red-velvet-cake">0</span>
+                        <button class="quantity-btn plus" data-id="red-velvet-cake">+</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <div class="cart-preview">
+            <h3>Your Order</h3>
+            <div id="cart-items"></div>
+            <div class="cart-total">Total: R<span id="cart-total">0.00</span></div>
+            <button id="view-cart" class="btn">View Cart</button>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 The Coffee House. All rights reserved.</p>
+    </footer>
+    
+    <script src="js/menu.js"></script>
+</body>
+</html>

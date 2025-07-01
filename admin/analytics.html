@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics | The Coffee House</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    
+<header class="navbar">
+  <div class="nav-logo">
+    <h1 class="logo-text">The Coffee House</h1>
+  </div>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="/index.html" class="nav-link">Home</a></li>
+      <li><a href="/menu.html" class="nav-link">Menu</a></li>
+      <li><a href="/reservation.html" class="nav-link">Reserve</a></li>
+      <li><a href="/admin/dashboard.html" class="nav-link">Admin</a></li>
+    </ul>
+    <button class="nav-toggle">
+      <span class="hamburger"></span>
+    </button>
+  </nav>
+</header>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  navToggle?.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+</script>
+
+    
+    <main>
+        <h2>Sales Analytics</h2>
+        
+        <div class="analytics-period">
+            <select id="time-period">
+                <option value="7">Last 7 Days</option>
+                <option value="30">Last 30 Days</option>
+                <option value="90">Last 90 Days</option>
+            </select>
+        </div>
+        
+        <div class="analytics-cards">
+            <div class="card">
+                <h3>Total Revenue</h3>
+                <p id="total-revenue">$0.00</p>
+            </div>
+            
+            <div class="card">
+                <h3>Total Orders</h3>
+                <p id="total-orders">0</p>
+            </div>
+            
+            <div class="card">
+                <h3>Average Order Value</h3>
+                <p id="avg-order">$0.00</p>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <canvas id="sales-chart" width="400" height="200"></canvas>
+        </div>
+        
+        <div class="popular-items">
+            <h3>Most Popular Items</h3>
+            <table id="popular-items-table">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity Sold</th>
+                        <th>Revenue</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Popular items will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 The Coffee House. All rights reserved.</p>
+    </footer>
+    
+    <script src="../../js/main.js"></script>
+    <script src="../../js/admin.js"></script>
+    <!-- Include Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

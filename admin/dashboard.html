@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | The Coffee House</title>
+    <link rel="stylesheet" href="../../css/style.css">
+</head>
+<body>
+    
+<header class="navbar">
+  <div class="nav-logo">
+    <h1 class="logo-text">The Coffee House</h1>
+  </div>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="/index.html" class="nav-link">Home</a></li>
+      <li><a href="/menu.html" class="nav-link">Menu</a></li>
+      <li><a href="/reservation.html" class="nav-link">Reserve</a></li>
+      <li><a href="/admin/dashboard.html" class="nav-link">Admin</a></li>
+    </ul>
+    <button class="nav-toggle">
+      <span class="hamburger"></span>
+    </button>
+  </nav>
+</header>
+
+<script>
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+
+  navToggle?.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+  });
+</script>
+
+    
+    <main>
+        <h2>Admin Dashboard</h2>
+        
+        <div class="admin-cards">
+            <div class="card">
+                <h3>Today's Orders</h3>
+                <p id="today-orders">0</p>
+            </div>
+            
+            <div class="card">
+                <h3>Pending Reservations</h3>
+                <p id="pending-reservations">0</p>
+            </div>
+            
+            <div class="card">
+                <h3>Today's Revenue</h3>
+                <p id="today-revenue">$0.00</p>
+            </div>
+        </div>
+        
+        <div class="recent-orders">
+            <h3>Recent Orders</h3>
+            <table id="orders-table">
+                <thead>
+                    <tr>
+                        <th>Order #</th>
+                        <th>Customer</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Orders will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2023 The Coffee House. All rights reserved.</p>
+    </footer>
+    
+    <script src="../../js/main.js"></script>
+    <script src="../../js/admin.js"></script>
+    <script src="../../js/auth.js"></script>
+</body>
+</html>

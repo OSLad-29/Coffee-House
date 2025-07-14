@@ -2,7 +2,7 @@
 
 Welcome to **The Coffee House** web-based management system — a lightweight, fully responsive solution designed for small coffee shops to digitize their menu, ordering, and admin operations.
 
----
+----
 
 ## 🚀 Features
 

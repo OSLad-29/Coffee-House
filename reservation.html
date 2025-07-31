@@ -5,111 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Table Reservation | The Coffee House</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
 <header class="navbar">
-  <div class="nav-logo">
-    <h1 class="logo-text">The Coffee House</h1>
-  </div>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="/index.html" class="nav-link">Home</a></li>
-      <li><a href="/menu.html" class="nav-link">Menu</a></li>
-      <li><a href="/reservation.html" class="nav-link">Reserve</a></li>
-      <li><a href="/admin/dashboard.html" class="nav-link">Admin</a></li>
-    </ul>
-    <button class="nav-toggle">
-      <span class="hamburger"></span>
-    </button>
-  </nav>
+    <div class="nav-logo">
+        <h1 class="logo-text">The Coffee House</h1>
+    </div>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="menu.html" class="nav-link">Menu</a></li>
+            <li><a href="reservation.html" class="nav-link active">Reserve</a></li>
+            <li><a href="admin/dashboard.html" class="nav-link">Admin</a></li>
+        </ul>
+        <button class="nav-toggle">
+            <span class="hamburger"></span>
+        </button>
+    </nav>
 </header>
 
-<script>
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  navToggle?.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
-</script>
-
+<main class="section-content">
+    <h2 class="section-title">Book Your Table</h2>
     
-    <main>
-        <h2>Book Your Table</h2>
-        
-        <div class="reservation-container">
-            <form id="reservation-form">
-                <div class="form-group">
-                    <label for="res-name">Full Name*</label>
-                    <input type="text" id="res-name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="res-email">Email*</label>
-                    <input type="email" id="res-email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="res-phone">Phone Number*</label>
-                    <input type="tel" id="res-phone" required>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="res-date">Date*</label>
-                        <input type="date" id="res-date" required min="">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="res-time">Time*</label>
-                        <input type="time" id="res-time" required min="08:00" max="20:00">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="res-guests">Guests*</label>
-                        <select id="res-guests" required>
-                            <option value="1">1 Person</option>
-                            <option value="2">2 People</option>
-                            <option value="3">3 People</option>
-                            <option value="4">4 People</option>
-                            <option value="5">5 People</option>
-                            <option value="6">6+ People</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="res-notes">Special Requests</label>
-                    <textarea id="res-notes" rows="3" placeholder="Any special requirements..."></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-reserve">Reserve Table</button>
-            </form>
+    <div class="reservation-container">
+        <form id="reservation-form">
+            <div class="form-group">
+                <label for="res-name">Full Name*</label>
+                <input type="text" id="res-name" required>
+            </div>
             
-            <div id="reservation-success" class="hidden">
-                <div class="success-icon">✓</div>
+            <div class="form-group">
+                <label for="res-email">Email*</label>
+                <input type="email" id="res-email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="res-phone">Phone Number*</label>
+                <input type="tel" id="res-phone" required>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="res-date">Date*</label>
+                    <input type="date" id="res-date" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="res-time">Time*</label>
+                    <input type="time" id="res-time" required min="08:00" max="20:00">
+                </div>
+                
+                <div class="form-group">
+                    <label for="res-guests">Guests*</label>
+                    <select id="res-guests" required>
+                        <option value="1">1 Person</option>
+                        <option value="2">2 People</option>
+                        <option value="3">3 People</option>
+                        <option value="4">4 People</option>
+                        <option value="5">5 People</option>
+                        <option value="6">6+ People</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="res-notes">Special Requests</label>
+                <textarea id="res-notes" rows="3" placeholder="Any special requirements..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-reserve">Reserve Table</button>
+        </form>
+        
+        <div id="reservation-confirmation" class="order-confirmation hidden">
+            <div class="confirmation-content">
+                <div class="confirmation-icon">✓</div>
                 <h3>Reservation Confirmed!</h3>
-                <p>Your table has been successfully reserved.</p>
-                <p>We've sent confirmation details to your email.</p>
-                <p class="reservation-details">
-                    <strong>Reservation #<span id="reservation-id"></span></strong><br>
-                    <span id="reservation-summary"></span>
-                </p>
+                <p>Thank you for your booking. We've sent a confirmation to your email.</p>
+                <p class="order-number">Reservation #<span id="reservation-id"></span></p>
+                <div class="reservation-details">
+                    <p><strong>Details:</strong></p>
+                    <p id="reservation-date-time"></p>
+                    <p id="reservation-guests"></p>
+                </div>
                 <a href="index.html" class="btn">Back to Home</a>
             </div>
         </div>
-    </main>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2023 The Coffee House. All rights reserved.</p>
+</footer>
+
+<script src="js/reservation.js"></script>
+<script>
+    // Set minimum date to today
+    document.getElementById('res-date').min = new Date().toISOString().split('T')[0];
     
-    <footer>
-        <p>&copy; 2023 The Coffee House. All rights reserved.</p>
-    </footer>
-    
-    <script src="js/reservation.js"></script>
-    <script>
-        // Set minimum date to today
-        document.getElementById('res-date').min = new Date().toISOString().split('T')[0];
-    </script>
+    // Mobile navigation toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+</script>
 </body>
 </html>

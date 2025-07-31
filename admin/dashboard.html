@@ -4,83 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | The Coffee House</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     
 <header class="navbar">
-  <div class="nav-logo">
-    <h1 class="logo-text">The Coffee House</h1>
-  </div>
-  <nav>
-    <ul class="nav-menu">
-      <li><a href="/index.html" class="nav-link">Home</a></li>
-      <li><a href="/menu.html" class="nav-link">Menu</a></li>
-      <li><a href="/reservation.html" class="nav-link">Reserve</a></li>
-      <li><a href="/admin/dashboard.html" class="nav-link">Admin</a></li>
-    </ul>
-    <button class="nav-toggle">
-      <span class="hamburger"></span>
-    </button>
-  </nav>
+    <div class="nav-logo">
+        <h1 class="logo-text">The Coffee House</h1>
+    </div>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="../index.html" class="nav-link">Home</a></li>
+            <li><a href="../menu.html" class="nav-link">Menu</a></li>
+            <li><a href="../reservation.html" class="nav-link">Reserve</a></li>
+            <li><a href="dashboard.html" class="nav-link active">Admin</a></li>
+        </ul>
+        <button class="nav-toggle">
+            <span class="hamburger"></span>
+        </button>
+    </nav>
 </header>
 
-<script>
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-
-  navToggle?.addEventListener('click', () => {
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-  });
-</script>
-
+<main class="section-content">
+    <div class="admin-header">
+        <h2>Dashboard Overview</h2>
+        <div class="admin-actions">
+            <select id="time-period">
+                <option value="day">Today</option>
+                <option value="week">This Week</option>
+                <option value="month">This Month</option>
+            </select>
+            <button id="refresh-data" class="btn">
+                <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <button id="logout" class="btn btn-danger">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
     
-    <main>
-        <h2>Admin Dashboard</h2>
+    <!-- Stats Cards -->
+    <div class="admin-cards">
+        <div class="stat-card">
+            <h3><i class="fas fa-coffee"></i> Today's Orders</h3>
+            <div class="stat-value" id="today-orders">0</div>
+            <div class="stat-comparison" id="orders-comparison"></div>
+        </div>
         
-        <div class="admin-cards">
-            <div class="card">
-                <h3>Today's Orders</h3>
-                <p id="today-orders">0</p>
+        <div class="stat-card">
+            <h3><i class="fas fa-calendar-day"></i> Today's Reservations</h3>
+            <div class="stat-value" id="today-reservations">0</div>
+            <div class="stat-comparison" id="reservations-comparison"></div>
+        </div>
+        
+        <div class="stat-card">
+            <h3><i class="fas fa-money-bill-wave"></i> Today's Revenue</h3>
+            <div class="stat-value" id="today-revenue">R0.00</div>
+            <div class="stat-comparison" id="revenue-comparison"></div>
+        </div>
+        
+        <div class="stat-card">
+            <h3><i class="fas fa-calendar-alt"></i> Monthly Revenue</h3>
+            <div class="stat-value" id="monthly-revenue">R0.00</div>
+            <div class="stat-comparison" id="monthly-comparison"></div>
+        </div>
+    </div>
+    
+    <!-- Sales Chart -->
+    <div class="chart-container">
+        <canvas id="sales-chart"></canvas>
+    </div>
+    
+    <!-- Management Tabs -->
+    <div class="management-tabs">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="orders">Orders Management</button>
+            <button class="tab-btn" data-tab="reservations">Reservations Management</button>
+            <button class="tab-btn" data-tab="archive">Completed Orders</button>
+        </div>
+        
+        <div class="tab-content active" id="orders-tab">
+            <div class="table-controls">
+                <input type="text" id="orders-search" placeholder="Search orders...">
+                <select id="orders-filter">
+                    <option value="all">All Orders</option>
+                    <option value="pending">Pending</option>
+                    <option value="accepted">Accepted</option>
+                </select>
             </div>
-            
-            <div class="card">
-                <h3>Pending Reservations</h3>
-                <p id="pending-reservations">0</p>
-            </div>
-            
-            <div class="card">
-                <h3>Today's Revenue</h3>
-                <p id="today-revenue">$0.00</p>
+            <div class="table-responsive">
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orders-table">
+                        <!-- Orders will load here -->
+                    </tbody>
+                </table>
             </div>
         </div>
         
-        <div class="recent-orders">
-            <h3>Recent Orders</h3>
-            <table id="orders-table">
-                <thead>
-                    <tr>
-                        <th>Order #</th>
-                        <th>Customer</th>
-                        <th>Items</th>
-                        <th>Total</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Orders will be loaded here -->
-                </tbody>
-            </table>
+        <div class="tab-content" id="reservations-tab">
+            <div class="table-controls">
+                <input type="text" id="reservations-search" placeholder="Search reservations...">
+                <select id="reservations-filter">
+                    <option value="all">All Reservations</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                </select>
+            </div>
+            <div class="table-responsive">
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Reservation ID</th>
+                            <th>Customer</th>
+                            <th>Date/Time</th>
+                            <th>Guests</th>
+                            <th>Contact</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-table">
+                        <!-- Reservations will load here -->
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </main>
+        
+        <div class="tab-content" id="archive-tab">
+            <div class="table-controls">
+                <input type="text" id="archive-search" placeholder="Search completed orders...">
+                <button id="clear-archive" class="btn btn-danger">Clear Archive</button>
+            </div>
+            <div class="table-responsive">
+                <table class="management-table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                            <th>Completed Date</th>
+                            <th>Status History</th>
+                        </tr>
+                    </thead>
+                    <tbody id="archive-table">
+                        <!-- Archive will load here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     
-    <footer>
-        <p>&copy; 2023 The Coffee House. All rights reserved.</p>
-    </footer>
+    <!-- Order Details Modal -->
+    <div id="order-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Order Details #<span id="order-id"></span></h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn" id="accept-order">Accept Order</button>
+                <button class="btn" id="complete-order">Mark as Completed</button>
+                <button class="btn btn-danger" id="delete-order">Delete Order</button>
+            </div>
+        </div>
+    </div>
     
-    <script src="../../js/main.js"></script>
-    <script src="../../js/admin.js"></script>
-    <script src="../../js/auth.js"></script>
+    <!-- Status History Modal -->
+    <div id="history-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Status History #<span id="history-id"></span></h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="history-content">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2023 The Coffee House. All rights reserved.</p>
+</footer>
+
+<script src="../js/admin-dashboard.js"></script>
 </body>
 </html>
